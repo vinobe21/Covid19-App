@@ -7,6 +7,7 @@ import Table from './Table';
 import Graph from './Graph';
 import './App.css';
 import "leaflet/dist/leaflet.css";
+import numeral from 'numeral';
 
 function App() {
   const [conuntries, setCountries] = useState([]);
@@ -78,7 +79,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <div className="app__left">
         <div className="app__header">
           <h1>Covid 19 tracker</h1>
@@ -101,14 +102,14 @@ function App() {
             active={casesType === "cases"}
             onClick={e => setCasesType("cases")}
             title="Coronavirus Cases"
-            cases={prettyPrintStat(countryInfo.todayCases)}
+            cases={numeral(countryInfo.todayCases).format("0,0")}
             total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
             active={casesType === "recovered"}
             onClick={e => setCasesType("recovered")}
             title="Recoverd"
-            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            cases={numeral(countryInfo.todayRecovered).format("0,0")}
             total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
@@ -116,7 +117,7 @@ function App() {
             active={casesType === "deaths"}
             onClick={e => setCasesType("deaths")}
             title="Deaths"
-            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            cases={numeral(countryInfo.todayDeaths).format("0,0")}
             total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>{/*end of InfoBox */}
